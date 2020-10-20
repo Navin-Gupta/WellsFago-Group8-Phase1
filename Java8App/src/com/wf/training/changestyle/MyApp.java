@@ -60,7 +60,15 @@ public class MyApp {
 								System.out.println("Message send over Twitter : " + message);
 							}*/
 		// Pure Function : syntax Lambda expression
-		Greetings twitter = message -> System.out.println("Message send over Twitter : " + message);
+		int a = 10;
+		Greetings twitter = message -> {
+								System.out.println("Message send over Twitter : " + message);
+								System.out.println(a);
+								int x = 10;
+								// int a = 10;
+								// a = 20;
+							};
+		
 		// 100% backward compatible
 		msg.conveyMessage("Hello All", twitter);
 		msg.conveyMessage("Hello All", message -> System.out.println("Message send over Network : " + message));

@@ -4,8 +4,8 @@ public class RunnableLambdaEx {
 
 	public static void main(String args[]) {
 		Runnable runLambda = () ->{
-				// Thread activity 
-		};
+									// Thread activity 
+							};
 		
 		new Thread(runLambda).start();
 	}
