@@ -44,10 +44,18 @@ public class ExploreStream {
 									.stream().peek(student->System.out.println("Initiated :" + student))
 									.filter(gradeCheck).peek(student->System.out.println("Ist filter :" + student))
 									.filter(gpaCheck).peek(student->System.out.println("IInd filter :" + student))
-				   					.count();
+									.count();
 									// .collect(Collectors.toList());
 		   
 		   // System.out.println(filteredStudent);
 	}
 
 }
+
+
+
+
+
+
+
+
