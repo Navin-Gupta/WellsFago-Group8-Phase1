@@ -2,6 +2,7 @@ package com.wf.training.web.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,12 +46,14 @@ public class ProfileServ extends HttpServlet {
 		
 		// request scope
 		request.setAttribute("student", student);
+		
 		// Student stud1 = (Student) request.getAttribute("student");
 		
 		/*
 		// session scope
 		HttpSession session = request.getSession();
 		session.setAttribute("student", student);
+		
 		Student stud2 = (Student) session.getAttribute("student");
 		
 		// application scope
@@ -60,7 +63,14 @@ public class ProfileServ extends HttpServlet {
 		*/
 		
 		// a jsp should respond  ( + dynamics)
-		response.sendRedirect("profile-show.jsp");
+		// Terminate the current cycle, initiates a new cycle  
+		// response.sendRedirect("profile-show.jsp");
+		
+		// continue the same request cycle
+		RequestDispatcher dispatcher = request.getRequestDispatcher("profile-show.jsp");
+		dispatcher.forward(request, response);
+		
+		
 	}
 
 	/**

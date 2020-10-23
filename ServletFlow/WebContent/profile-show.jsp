@@ -11,6 +11,9 @@
 <%
 	// fetch the data from request object
 	Student student = (Student) request.getAttribute("student");
+	// fetch from session
+	// JSP PAGE is exposed with multiple predeclared object : request, response, session , writer...
+	// Student student = (Student) session.getAttribute("student");
 %>
 <h2>NAME <%=student.getName() %></h2>
 <h2>EMAIL <%=student.getEmail() %></h2>
