@@ -3,11 +3,14 @@ package com.wf.training.web.servlets;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.wf.training.web.dao.ProductDao;
 
 /**
  * Servlet implementation class ProductController
@@ -16,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private ProductDao productDao;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -24,6 +29,17 @@ public class ProductController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+      
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+    	String driver = config.getServletContext().getInitParameter("jdbcDriver");
+    	String url = config.getServletContext().getInitParameter("jdbcUrl");
+    	String username = config.getServletContext().getInitParameter("jdbcUsername");
+    	String password = config.getServletContext().getInitParameter("jdbcPassword");
+    	
+    	this.productDao = new ProductDao(driver, url, username, password);
+    }
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
