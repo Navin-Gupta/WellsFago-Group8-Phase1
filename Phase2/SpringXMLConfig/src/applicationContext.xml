@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Bean Config -->
+	<!--
+		What bean to create : How to expose the bean 
+	 -->
+	 
+	 <!-- Bean of Fortune Service to create -->
+	 <bean id="personal" class="com.wf.training.spring.factory.service.PersonalFortune"></bean>
+	 <bean id="professional" class="com.wf.training.spring.factory.service.ProfessionalFortune"></bean>
+	 
+	 <!-- 
+	 <bean class="com.wf.training.spring.factory.service.EmailService"></bean>
+	  -->
+	 <!-- 
+	 <bean id="email" class="com.wf.training.spring.factory.service.EmailService"></bean>
+	  -->
+	 <!-- Injecting the dependency : How -->
+	 
+	 <!-- Constructor --> 
+	 <!-- 
+	 <bean id="email" class="com.wf.training.spring.factory.service.EmailService">
+	 	<constructor-arg ref="professional"/>
+	 </bean>
+	  -->
+	  
+	 <!-- Setter based --> 
+	 <!-- literal value -->
+	 <bean id="email" class="com.wf.training.spring.factory.service.EmailService">
+	 	<property name="fortuneService" ref="personal"/>
+	 	<property name="sender" value="admin@mail.com"/>
+	 </bean>
+	 
+	 <bean id="sms" class="com.wf.training.spring.factory.service.SmsService"></bean>
+	
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
