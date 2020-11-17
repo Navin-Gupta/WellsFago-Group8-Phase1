@@ -7,6 +7,11 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+	
+	<!-- Load the properties files -->
+	<context:property-placeholder location="classpath:repository.properties"/>
+	
+	
 	<!-- Bean Config -->
 	<!--
 		What bean to create : How to expose the bean 
@@ -33,9 +38,17 @@
 	  
 	 <!-- Setter based --> 
 	 <!-- literal value -->
-	 <bean id="email" class="com.wf.training.spring.factory.service.EmailService">
+	 <bean id="email" 
+	 	   class="com.wf.training.spring.factory.service.EmailService"
+	 	   scope="prototype"
+	 	   init-method="myInit"
+	 	   destroy-method="myCleanUp">
 	 	<property name="fortuneService" ref="personal"/>
+	 	<!-- 
 	 	<property name="sender" value="admin@mail.com"/>
+	 		SpEL
+	 	 -->
+	 	<property name="sender" value="${msg.email.sender}"/>
 	 </bean>
 	 
 	 <bean id="sms" class="com.wf.training.spring.factory.service.SmsService"></bean>
