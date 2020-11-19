@@ -4,11 +4,15 @@ import javax.annotation.Generated;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.wf.training.spring.web.model.Employee;
 
 @Controller
 @RequestMapping("/employee")
@@ -70,13 +74,34 @@ public class EmployeeController {
 	}*/
 	
 	// Spring way
-	@PostMapping("/save-profile")
+	/*@PostMapping("/save-profile")
 	// public String saveProfile(String name, String email, String contact) {
 	public String saveProfile(@RequestParam("name") String empName, 
 							  @RequestParam String email, 
-							  @RequestParam String contact) {		
+							  @RequestParam(value="contact", required = false, defaultValue = "111111" ) String contact) {		
 		System.out.println("FROM POST :" + empName + " | " + email + " | " + contact);
 		return "employee-profile-confirm";
+	}*/
+	
+	// spring abstract way
+	/*@PostMapping("/save-profile")
+	public String saveProfile(Employee employee, Model model) {		
+		// System.out.println("FROM POST :" + employee.getName() + " | " + employee.getEmail() + " | " + employee.getContact());
+
+		// place the data in model container
+		model.addAttribute("employee", employee);
+		return "employee-profile-confirm";
+	}*/
+	
+	// clubbed class : View Page name and model data
+	@PostMapping("/save-profile")
+	public ModelAndView saveProfile(Employee employee) {		
+		// Create an instance of ModelAndView
+		ModelAndView mv = new ModelAndView("employee-profile-confirm");
+		// mv.setViewName("employee-profile-confirm");
+		// place the data in model container
+		mv.addObject("employee", employee);
+		return mv;
 	}
 	
 	@GetMapping("/save-profile")

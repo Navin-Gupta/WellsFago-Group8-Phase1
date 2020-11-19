@@ -20,10 +20,12 @@
 		<div><input type="text" name="email" /></div>
 	</div>
 	<br/>
-	<div>
-		<div><label>Enter contact</label></div>
-		<div><input type="text" name="contact" /></div>
-	</div>
+	
+		<div>
+			<div><label>Enter contact</label></div>
+			<div><input type="text" name="contact" /></div>
+		</div>
+ 	
 	<br/>
 	<div>
 		<input type="submit" value="Save"> 
