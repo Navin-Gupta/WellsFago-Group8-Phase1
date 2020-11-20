@@ -14,6 +14,8 @@
 <h3>NAME : ${student.name}</h3>
 <h3>EMAIL: ${student.email}</h3>
 <h3>COUNTRY: ${student.country}</h3>
+<h3>FREE PASSES: ${student.freePasses}</h3>
+<h3>STUDENT CODE: ${student.studentCode}</h3>
 <h3>FAVORITE LANGUAGES: </h3>
 <ul>
 	<core:forEach var="language" items="${student.favoriteLanguages}">

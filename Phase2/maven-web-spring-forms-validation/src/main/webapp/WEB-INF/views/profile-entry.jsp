@@ -6,9 +6,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+	.error{
+		color:red;
+	}
+</style>
 </head>
 <body>
-<h2>Provide profile info</h2>
+<h2 class="error">Provide profile info</h2>
 <hr/>
 <%--
 	Map the model data with spring forms
@@ -22,7 +27,10 @@
 <spring:form action="profile-save" method="post" modelAttribute="student">
 	<div>
 		<div><spring:label path="name">Enter name</spring:label></div>
-		<div><spring:input path="name" type="text" /></div>
+		<div>
+			<spring:input path="name" type="text" />
+			<spring:errors path="name" cssClass="error"/>
+		</div>
 	</div>
 	<br/>
 	<div>
@@ -30,7 +38,21 @@
 		<div><spring:input path="email" type="text" /></div>
 	</div>
 	<br/>
-	
+	<div>
+		<div><spring:label path="freePasses">Enter free passes</spring:label></div>
+		<div>
+			<spring:input path="freePasses" type="number" />
+			<spring:errors path="freePasses" cssClass="error"/>
+		</div>
+	</div>
+	<br/>
+	<div><spring:label path="studentCode">Enter student code</spring:label></div>
+		<div>
+			<spring:input path="studentCode" type="text" />
+			<spring:errors path="studentCode" cssClass="error"/>
+		</div>
+	</div>
+	<br/>
 	<div>
 		<div><spring:label path="country">Enter country</spring:label></div>
 		<div>

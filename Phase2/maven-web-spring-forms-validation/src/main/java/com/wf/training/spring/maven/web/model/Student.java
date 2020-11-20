@@ -2,11 +2,37 @@ package com.wf.training.spring.maven.web.model;
 
 import java.util.LinkedHashMap;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import com.wf.training.spring.maven.web.validators.StudentCode;
+
+
+
 public class Student {
 
+	@NotBlank(message = "Name is required!")
+	// @Pattern(regexp = "")
 	private String name;
+	
+	// @Email
 	private String email;
+	
 	private String country;
+	
+	// @NotBlank(message = "Free passes are required!") // work for string
+	// always go for wrapper types
+	@NotNull(message = "Free passes are required!")
+	@Min(value = 1, message = "At least 1 free pass is required!")
+	private Integer freePasses;
+	
+	// eg : begin with prefix = ""
+	@StudentCode(prefix = "WF", message = "Invalid Student Code!")
+	private String studentCode;
+	
 	private String[] favoriteLanguages;
 	
 	private LinkedHashMap<String, String> countries;
@@ -23,6 +49,35 @@ public class Student {
 	
 	
 	
+	
+	public Integer getFreePasses() {
+		return freePasses;
+	}
+
+
+
+	
+	public void setFreePasses(Integer freePasses) {
+		this.freePasses = freePasses;
+	}
+
+
+
+
+	public String getStudentCode() {
+		return studentCode;
+	}
+
+
+
+
+	public void setStudentCode(String studentCode) {
+		this.studentCode = studentCode;
+	}
+
+
+
+
 	public String[] getFavoriteLanguages() {
 		return favoriteLanguages;
 	}
