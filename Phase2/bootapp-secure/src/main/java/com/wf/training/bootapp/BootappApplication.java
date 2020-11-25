@@ -1,0 +1,15 @@
+package com.wf.training.bootapp;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+
+// Spring config class
+@SpringBootApplication
+public class BootappApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(BootappApplication.class, args);
+	}
+
+}
