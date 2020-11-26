@@ -1,16 +1,34 @@
 package com.wf.training.bootrestfulcrud.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+// map java class to db table
+@Entity // by default class name is defined as table name
+// @Table(name = "employeemaster")
 public class Employee {
 
+	// all field will be mapped as cols with same name
+	@Id  // primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // unique AI value 
 	private Long id;
+	
+	// @Column(name = "empname")
 	private String name;
+	
 	private String email;
+	
 	private String contact;
 	private Double basicPay;
 	private Double hra;
 	private Double ta;
 	private Double da;
 	private Double pfDeduction;
+	
 	public Long getId() {
 		return id;
 	}
