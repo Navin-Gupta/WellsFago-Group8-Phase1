@@ -6,13 +6,15 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.wf.training.bootrestfulcrud.dto.EmployeeInputDto;
 import com.wf.training.bootrestfulcrud.dto.EmployeeOutputDto;
 import com.wf.training.bootrestfulcrud.entity.Employee;
 import com.wf.training.bootrestfulcrud.repository.EmployeeRepository;
 
-@Component
+// @Component
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
 	// injecting a dependency
@@ -57,7 +59,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<EmployeeOutputDto> fetchAllEmployees() {
 		
-		
+		/*this.repository.findByEmail("");
+		this.repository.findByBasicPayGreaterThan(2000.0);
+		this.repository.findBySomeComplexQuery(2000.0, "");
+		this.repository.veryComplexBusinessLogicReq("");
+		*/
 		
 		List<Employee> employees = this.repository.findAll();
 		// convert entity into dto list
@@ -75,9 +81,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public EmployeeOutputDto fetchSingleEmployee(Long id) {
-		Employee employee = this.repository.findById(id).orElse(null);
-		EmployeeOutputDto employeeOutputDto = this.convertEntityToOutputDto(employee);
-		return employeeOutputDto;
+		if(this.repository.existsById(id)) {
+			Employee employee = this.repository.findById(id).orElse(null);
+			EmployeeOutputDto employeeOutputDto = this.convertEntityToOutputDto(employee);
+			return employeeOutputDto;
+		}
+		return null;
 	}
 
 	@Override
@@ -93,24 +102,30 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public EmployeeOutputDto updateEmployee(Long id, EmployeeInputDto employeeInputDto) {
-		// convert input dto into entity
-		Employee employee = this.convertInputDtoToEntity(employeeInputDto);
-		// assign the id to employee
-		employee.setId(id);
-		// save into DB, returns newly added record
-		// save : PK (id) is null or empty:insert or else update
-		Employee updatedEmployee = this.repository.save(employee);
-		// convert entity into dto
-		EmployeeOutputDto employeeOutputDto =  this.convertEntityToOutputDto(updatedEmployee);
-		return employeeOutputDto;
+		if(this.repository.existsById(id)) {
+			// convert input dto into entity
+			Employee employee = this.convertInputDtoToEntity(employeeInputDto);
+			// assign the id to employee
+			employee.setId(id);
+			// save into DB, returns newly added record
+			// save : PK (id) is null or empty:insert or else update
+			Employee updatedEmployee = this.repository.save(employee);
+			// convert entity into dto
+			EmployeeOutputDto employeeOutputDto =  this.convertEntityToOutputDto(updatedEmployee);
+			return employeeOutputDto;
+		}
+		return null;
 	}
 
 	@Override
 	public EmployeeOutputDto deleteEmployee(Long id) {
-		// get the copy of record to be deleted
-		EmployeeOutputDto employeeOutputDto = this.fetchSingleEmployee(id);
-		this.repository.deleteById(id);
-		return employeeOutputDto;
+		if(this.repository.existsById(id)) {
+			// get the copy of record to be deleted
+			EmployeeOutputDto employeeOutputDto = this.fetchSingleEmployee(id);
+			this.repository.deleteById(id);
+			return employeeOutputDto;
+		}
+		return null;
 	}
 
 }

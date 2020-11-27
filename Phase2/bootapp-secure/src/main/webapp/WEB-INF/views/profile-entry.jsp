@@ -12,7 +12,8 @@
 	}
 </style>
 </head>
-<body>
+<body cllass="container">
+<jsp:include page="bootstrap-base.jsp"/>
 <h2 class="error">Provide profile info</h2>
 <hr/>
 <%--
@@ -25,9 +26,9 @@
 		call setter method of class field	
  --%>
 <spring:form action="${pageContext.request.contextPath}/student/profile-save" method="post" modelAttribute="student">
-	<div>
-		<div><spring:label path="name">Enter name</spring:label></div>
-		<div>
+	<div  class="row">
+		<div  class="col"><spring:label path="name">Enter name</spring:label></div>
+		<div  class="col">
 			<spring:input path="name" type="text" />
 			<spring:errors path="name" cssClass="error"/>
 		</div>
@@ -51,7 +52,7 @@
 			<spring:input path="studentCode" type="text" />
 			<spring:errors path="studentCode" cssClass="error"/>
 		</div>
-	</div>
+	
 	<br/>
 	<div>
 		<div><spring:label path="country">Enter country</spring:label></div>
@@ -87,6 +88,7 @@
 	</div>
 		
 </spring:form>
+<jsp:include page="bootstrap-query.jsp"/>
 </body>
 </html>
 

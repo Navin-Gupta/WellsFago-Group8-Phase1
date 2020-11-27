@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="bootstrap-base.jsp"/>
 <%-- To access info about logged in user --%>
 <%-- info about logged in user is maintained in object principal --%>
 <h1>Welcome <security:authentication property="principal.username"/></h1>
@@ -27,6 +28,6 @@
 <hr/>
 <a href="${pageContext.request.contextPath}/mentor/home">Mentor Dashboard</a>
 </security:authorize>
-
+<jsp:include page="bootstrap-query.jsp"/>
 </body>
 </html>

@@ -1,10 +1,23 @@
 package com.wf.training.bootrestfulcrud.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
 public class EmployeeInputDto {
 	
+	@NotBlank(message = "Name is required!")
 	private String name;
+	
+	@Email
 	private String email;
+	
+	@Length(max = 10, min = 10)
 	private String contact;
+	
+	@Min(value = 1000)
 	private Double basicPay;
 	
 	public String getName() {
