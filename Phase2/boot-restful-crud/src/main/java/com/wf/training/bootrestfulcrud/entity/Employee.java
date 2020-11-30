@@ -1,10 +1,13 @@
 package com.wf.training.bootrestfulcrud.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 // map java class to db table
@@ -29,6 +32,16 @@ public class Employee {
 	private Double da;
 	private Double pfDeduction;
 	
+	@OneToMany(mappedBy = "employee")
+	private List<Project> projects;
+	
+	
+	public List<Project> getProjects() {
+		return projects;
+	}
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
 	public Long getId() {
 		return id;
 	}

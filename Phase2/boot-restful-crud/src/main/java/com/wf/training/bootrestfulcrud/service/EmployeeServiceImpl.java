@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.wf.training.bootrestfulcrud.dto.EmployeeInputDto;
 import com.wf.training.bootrestfulcrud.dto.EmployeeOutputDto;
 import com.wf.training.bootrestfulcrud.entity.Employee;
+import com.wf.training.bootrestfulcrud.entity.Project;
 import com.wf.training.bootrestfulcrud.repository.EmployeeRepository;
 
 // @Component
@@ -64,6 +65,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		this.repository.findBySomeComplexQuery(2000.0, "");
 		this.repository.veryComplexBusinessLogicReq("");
 		*/
+		
+		// List<Project> projects = this.repository.findById(1L).get().getProjects();
 		
 		List<Employee> employees = this.repository.findAll();
 		// convert entity into dto list
