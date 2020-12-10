@@ -1,0 +1,12 @@
+node{
+
+	def mvnHome
+	stage('Checkout'){
+		git url: 'file://E:/Well-Fargo4/Wave2/Group8/WorkSpace/boot-restful', branch: "master"
+		mvnHome = tool 'Local Maven'		
+	}
+
+	stage('Build'){
+		bat(/"${mvnHome}\bin\mvn" clean package/)
+	}
+}
