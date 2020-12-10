@@ -1,0 +1,3 @@
+com\wf\training\bootrestful\BootRestfulApplication.class
+com\wf\training\bootrestful\model\Employee.class
+com\wf\training\bootrestful\controller\RestTestController.class
